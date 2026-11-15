@@ -1,0 +1,4 @@
+<resources>
+    <!-- Testroute (lokaal.gpx), alleen in debug-builds (simulator); zie KnooppuntenApp.fallbackRoute. -->
+    <jsonData id="TestRoute" filename="route.json"/>
+</resources>

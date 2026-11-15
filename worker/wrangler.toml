@@ -1,0 +1,27 @@
+name = "fietsknooppunten"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+# Alleen via het eigen domein: dan gelden de zone-instellingen (HTTPS, TLS 1.2, WAF) overal.
+workers_dev = false
+preview_urls = false
+
+# Webapp (ticket publiek/04): statische bestanden uit public/. /route gaat naar de Worker.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Eigen domein; Cloudflare maakt DNS-record en certificaat zelf aan.
+[[routes]]
+pattern = "fietsknooppunten.deboskes.eu"
+custom_domain = true
+
+# Routes per koppelcode (ticket publiek/03). Schema: migrations/.
+#   npx wrangler d1 migrations apply fietsknooppunten --remote
+[[d1_databases]]
+binding = "DB"
+database_name = "fietsknooppunten"
+database_id = "6a2078c8-c446-45c1-9b23-1b28fcd593cd"
+
+# Dagelijks opruimen: routes die 90 dagen niet gebruikt zijn, en oude tellers.
+[triggers]
+crons = ["17 3 * * *"]

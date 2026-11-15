@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knooppunten</title>
+  <meta name="description" content="Fietsknooppuntenroutes naar je Garmin-horloge sturen." data-i18n-content="page.description">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Teksten staan in lib/i18n.js; data-i18n* vult ze in de gekozen taal in. -->
+  <header class="top">
+    <div class="sign" aria-hidden="true">42</div>
+    <div class="grow">
+      <h1 data-i18n="page.title">Knooppunten</h1>
+      <p class="lead" data-i18n="page.lead">Stuur een fietsknooppuntenroute naar je Garmin-horloge.</p>
+      <p class="lead"><span data-i18n="store.before">Je hebt de gratis horloge-app nodig:</span>
+        <a href="https://apps.garmin.com/apps/421c9b52-f51b-4a20-9c93-7f7fe1f53b1e" id="store-link" target="_blank" rel="noopener" data-i18n="store.link">Knooppunten in de Connect IQ Store</a></p>
+    </div>
+    <button type="button" id="language" class="link" data-i18n="language.switch" data-i18n-aria="language.switchLabel">English</button>
+  </header>
+
+  <main>
+    <section class="card" id="code-card" aria-labelledby="code-title">
+      <h2 id="code-title" data-i18n="code.title">Je koppelcode</h2>
+      <p><span data-i18n="code.intro">Met deze code vindt het horloge jouw routes. Vul hem één keer in op je telefoon:</span>
+        <strong data-i18n="code.path">Garmin Connect › Apparaten › je horloge › Connect IQ-apps › Knooppunten › Instellingen › Koppelcode</strong></p>
+      <div class="code-row">
+        <code id="code" class="code"></code>
+        <button type="button" id="copy-code" data-i18n="code.copy">Kopieer</button>
+      </div>
+      <details>
+        <summary data-i18n="code.other">Andere code gebruiken</summary>
+        <p class="hint" data-i18n="code.otherHint">Gebruik je de app ook op een ander apparaat? Vul dan daar dezelfde code in, dan komen je routes bij hetzelfde horloge.</p>
+        <form id="code-form" class="inline">
+          <input id="code-input" autocomplete="off" spellcheck="false" placeholder="xxxx-xxxx-xxxx-xxxx" aria-label="Koppelcode" data-i18n-aria="code.otherLabel">
+          <button type="submit" data-i18n="code.use">Gebruik deze code</button>
+        </form>
+        <p id="code-error" class="error" hidden></p>
+      </details>
+    </section>
+
+    <section class="card plan" aria-labelledby="plan-title">
+      <h2 id="plan-title" data-i18n="plan.title">Route plannen</h2>
+      <p><span data-i18n="plan.before">Plan je route in de</span>
+        <a href="https://www.anwb.nl/fietsroutes/fietsknooppuntenplanner" target="_blank" rel="noopener" data-i18n="plan.link">ANWB Fietsknooppuntenplanner</a>
+        <span data-i18n="plan.after">en exporteer hem als GPX. Importeer dat bestand hieronder: dan gaan ook de afslagen mee naar je horloge. Of typ zelf de knooppuntnummers in.</span></p>
+    </section>
+
+    <section class="card" aria-labelledby="routes-title">
+      <div class="title-row">
+        <h2 id="routes-title" data-i18n="routes.title">Routes</h2>
+        <div class="buttons">
+          <label class="button primary" for="gpx-file" data-i18n="routes.import">GPX importeren</label>
+          <input type="file" id="gpx-file" accept=".gpx,application/gpx+xml" hidden>
+          <button type="button" id="new-route" data-i18n="routes.new">Nieuwe route</button>
+        </div>
+      </div>
+      <p id="import-error" class="error" role="alert" hidden></p>
+      <ul id="route-list" class="route-list"></ul>
+      <p id="no-routes" class="hint" data-i18n="routes.empty" hidden>Nog geen routes. Maak een nieuwe route.</p>
+    </section>
+
+    <section class="card" id="editor" aria-labelledby="editor-title" hidden>
+      <h2 id="editor-title" class="sr-only" data-i18n="editor.title">Route bewerken</h2>
+      <label class="field"><span data-i18n="editor.name">Naam</span>
+        <input id="route-name" autocomplete="off">
+      </label>
+      <form id="add-form" class="inline">
+        <input id="add-input" inputmode="numeric" autocomplete="off" placeholder="Knooppunten toevoegen, bv. 93 99 94"
+               data-i18n-placeholder="editor.addPlaceholder" aria-label="Knooppunten toevoegen" data-i18n-aria="editor.addLabel">
+        <button type="submit" data-i18n="editor.add">Toevoegen</button>
+      </form>
+      <p id="add-error" class="error" hidden></p>
+
+      <p id="track-info" class="hint" hidden></p>
+
+      <div id="lookup" class="lookup" hidden>
+        <p id="lookup-intro"></p>
+        <form id="lookup-form" class="inline" autocomplete="off">
+          <div class="place">
+            <input id="place-input" placeholder="Omgeving, bv. Rosmalen" aria-label="Omgeving" data-i18n-aria="lookup.placeLabel"
+                   role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-list">
+            <ul id="place-list" class="suggestions" role="listbox" hidden></ul>
+          </div>
+          <button type="submit" id="lookup-button" data-i18n="lookup.button">Zoek locaties</button>
+        </form>
+        <p class="hint" data-i18n="lookup.hint">Knooppuntnummers komen in elke regio terug. De app zoekt binnen 40 km van de omgeving en kiest bij dubbele nummers de kortste route.</p>
+      </div>
+      <p id="lookup-status" class="status" role="status"></p>
+
+      <ol id="steps" class="steps"></ol>
+      <p id="no-steps" class="hint" data-i18n="editor.empty" hidden>Nog geen knooppunten. Typ de nummers in volgorde en druk op Enter.</p>
+
+      <div class="send-row">
+        <button type="button" id="send" class="primary" data-i18n="send.button">Verstuur naar horloge</button>
+        <button type="button" id="delete-route" class="danger" data-i18n="send.delete">Route verwijderen</button>
+      </div>
+      <p id="send-status" class="status" role="status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="privacy.html" id="privacy-link" data-i18n="footer.privacy">Privacy</a> ·
+    <span data-i18n="footer.data">Knooppuntdata ©</span>
+    <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" data-i18n="footer.contributors">OpenStreetMap-bijdragers</a> (ODbL)
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy · Knooppunten</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="top">
+    <div class="sign" aria-hidden="true">42</div>
+    <div><h1>Privacy</h1><p class="lead"><a href="./">← Back to Knooppunten</a> · <a href="privacy.html" lang="nl">Nederlands</a></p></div>
+  </header>
+  <main class="prose">
+    <p>Knooppunten is a free hobby project. There are no accounts, no ads and no tracking.</p>
+
+    <h2>What is stored</h2>
+    <ul>
+      <li><strong>In your browser:</strong> your routes and your pairing code (localStorage). They stay on your own device. If you clear the site data, they are gone.</li>
+      <li><strong>On the server, only when you press "Send to watch":</strong> the route you send (name, junction numbers and their positions, and the route line if you imported a GPX). The server stores the route only under a hash of your pairing code. The code itself is not stored.</li>
+      <li><strong>Against abuse:</strong> the number of sends per IP address is counted per day. The IP address is only stored as a salted hash, and the counters are deleted every day.</li>
+    </ul>
+
+    <h2>How long</h2>
+    <p>A route that has not been sent or fetched by the watch for 90 days is deleted automatically. Every new send replaces the previous route for the same code.</p>
+
+    <h2>Who can access it</h2>
+    <p>Only someone who knows your pairing code can read or overwrite your route. So do not share your code. The watch fetches the route through the Garmin Connect app on your phone or over Wi-Fi.</p>
+
+    <h2>Where it runs</h2>
+    <p>The website and the server run on <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> (Workers and D1). No data is shared with anyone else.</p>
+
+    <h2>Map data</h2>
+    <p>Junctions, connections and place names come from OpenStreetMap: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, available under the <a href="https://opendatacommons.org/licenses/odbl/">Open Database License</a>.</p>
+
+    <h2>Questions</h2>
+    <p>Do you want your route deleted sooner, or do you have another question? Please get in touch through the <a href="https://apps.garmin.com/apps/421c9b52-f51b-4a20-9c93-7f7fe1f53b1e">app's page in the Connect IQ Store</a>.</p>
+  </main>
+  <footer>Last updated: 13 November 2026</footer>
+</body>
+</html>

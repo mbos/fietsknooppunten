@@ -1,0 +1,31 @@
+<!-- Standaard (Engels): voor elke horlogetaal behalve Nederlands (resources-dut). -->
+<strings>
+    <string id="AppName">Knooppunten</string>
+    <string id="Start">start</string>
+    <string id="Last">last junction</string>
+    <string id="RideMenuTitle">Ride</string>
+    <string id="Continue">Continue</string>
+    <string id="Pause">Pause</string>
+    <string id="Resume">Resume</string>
+    <string id="SaveAndStop">Save and stop</string>
+    <string id="Discard">Discard</string>
+    <string id="ConfirmDiscard">Discard ride?</string>
+    <string id="Paused">paused</string>
+    <string id="NoGps">searching GPS</string>
+    <string id="NoLocation">no location</string>
+    <string id="OffRoute">off route</string>
+    <string id="NoRoute">no route</string>
+    <string id="NoRouteHint">fietsknooppunten.deboskes.eu</string>
+    <string id="FetchRoute">Get route</string>
+    <string id="Fetching">getting route…</string>
+    <string id="RouteReceived">new route</string>
+    <string id="RouteUnchanged">route is up to date</string>
+    <string id="NoConnection">no connection</string>
+    <string id="NotConfigured">enter your pairing code</string>
+    <string id="WrongKey">pairing code is wrong</string>
+    <string id="NothingSent">no route sent yet</string>
+    <string id="FetchFailed">could not get route</string>
+    <string id="CodeTitle">Pairing code</string>
+    <string id="CodePrompt">Code from fietsknooppunten.deboskes.eu</string>
+    <string id="Busy">server busy, try later</string>
+</strings>

@@ -1,0 +1,31 @@
+<!-- Nederlands (resources-dut); de standaardtaal (Engels) staat in resources/. -->
+<strings>
+    <string id="AppName">Knooppunten</string>
+    <string id="Start">start</string>
+    <string id="Last">laatste knooppunt</string>
+    <string id="RideMenuTitle">Rit</string>
+    <string id="Continue">Doorgaan</string>
+    <string id="Pause">Pauzeren</string>
+    <string id="Resume">Hervatten</string>
+    <string id="SaveAndStop">Opslaan en stoppen</string>
+    <string id="Discard">Verwijderen</string>
+    <string id="ConfirmDiscard">Rit verwijderen?</string>
+    <string id="Paused">gepauzeerd</string>
+    <string id="NoGps">zoekt GPS</string>
+    <string id="NoLocation">geen locatie</string>
+    <string id="OffRoute">van route</string>
+    <string id="NoRoute">geen route</string>
+    <string id="NoRouteHint">fietsknooppunten.deboskes.eu</string>
+    <string id="FetchRoute">Route ophalen</string>
+    <string id="Fetching">route ophalen…</string>
+    <string id="RouteReceived">nieuwe route</string>
+    <string id="RouteUnchanged">route is al actueel</string>
+    <string id="NoConnection">geen verbinding</string>
+    <string id="NotConfigured">vul de koppelcode in</string>
+    <string id="WrongKey">koppelcode klopt niet</string>
+    <string id="NothingSent">nog geen route verstuurd</string>
+    <string id="FetchFailed">ophalen mislukt</string>
+    <string id="CodeTitle">Koppelcode</string>
+    <string id="CodePrompt">Code van fietsknooppunten.deboskes.eu</string>
+    <string id="Busy">server is druk, probeer later</string>
+</strings>

@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+.swiftpm/
+*.xcodeproj/xcuserdata/
+# Connect IQ
+bin/
+*.der
+*.pem
+node_modules/
+.wrangler/
+worker/public/data/
+__pycache__/

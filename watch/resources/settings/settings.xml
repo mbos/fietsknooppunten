@@ -1,0 +1,13 @@
+<resources>
+    <!-- In te vullen in de Garmin Connect-app (Connect IQ-apps > Knooppunten > Instellingen).
+         De koppelcode komt van https://fietsknooppunten.deboskes.eu; het serveradres zit vast in de app (RouteSource.WORKER_URL). -->
+    <properties>
+        <property id="code" type="string"></property>
+    </properties>
+
+    <settings>
+        <setting propertyKey="@Properties.code" title="@Strings.CodeTitle" prompt="@Strings.CodePrompt">
+            <settingConfig type="alphaNumeric" />
+        </setting>
+    </settings>
+</resources>
