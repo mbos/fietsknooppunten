@@ -78,7 +78,7 @@ test("searches places ignoring case and accents, and names twins", () => {
   assert.equal(searchKey("Sint-Oedenrode"), "sint oedenrode");
 });
 
-// Met het echte knooppuntbestand (alleen als het gebouwd is: tools/knooppunten/update.sh).
+// Met het echte knooppuntbestand (alleen als het gebouwd is: tools/knooppunten/build.sh).
 const dataFile = new URL("../../public/data/knooppunten.json", import.meta.url);
 test("finds all junctions of lokaal.gpx by number around Rosmalen", { skip: !existsSync(dataFile) }, () => {
   const file = JSON.parse(readFileSync(dataFile, "utf8"));
