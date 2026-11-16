@@ -27,14 +27,24 @@ Alles valt binnen het gratis plan van Cloudflare. Boven de daglimieten krijg je 
 
 ## Uitrollen
 
+Push naar `main` en start de workflow:
+
 ```sh
-cd worker
-npm install
-npx wrangler d1 migrations apply fietsknooppunten --remote   # alleen na een nieuwe migratie
-npx wrangler deploy
+gh workflow run knooppunten.yml -f force=true
 ```
 
-De D1-database (`fietsknooppunten`) staat in `wrangler.toml`. Hij is eenmalig aangemaakt met `wrangler d1 create`. Het knooppuntbestand (`public/data/`) staat niet in git: bouw het eerst met `tools/knooppunten/update.sh`.
+Die bouwt eerst een vers knooppuntbestand (`public/data/` staat niet in git), draait de tests en doet dan `wrangler deploy`. Elke zondag gebeurt dat vanzelf als de OSM-data veranderd is (zie `tools/knooppunten/README.md`).
+
+Een nieuwe migratie voer je eenmalig met de hand uit, vóór het uitrollen:
+
+```sh
+cd worker
+npx wrangler d1 migrations apply fietsknooppunten --remote
+```
+
+De D1-database (`fietsknooppunten`) staat in `wrangler.toml`. Hij is eenmalig aangemaakt met `wrangler d1 create`.
+
+Rol je toch met de hand uit (`npx wrangler deploy`), bouw dan eerst het knooppuntbestand met `tools/knooppunten/build.sh`. Anders gaat het bestand dat je lokaal hebt live, of verdwijnt het van de site.
 
 ## Controleren
 

@@ -82,7 +82,8 @@ De code verwijst naar de officiële installatie. Voor een eigen versie pas je he
 2. **Secret `IP_SALT`:** een willekeurige waarde, alleen in Cloudflare: `npx wrangler secret put IP_SALT`. Daarmee worden IP-adressen voor de schrijflimiet gehasht (zie `docs/security.md`).
 3. **`watch/source/RouteSource.mc`:** `WORKER_URL` naar je eigen domein.
 4. **`watch/manifest.xml`:** een eigen app-ID. Het huidige ID hoort bij de app in de store; gebruik het niet voor een andere app.
-5. **Webapp:** de privacyverklaring (`worker/public/privacy*.html`) gaat over de officiële dienst. Pas die aan je eigen installatie aan.
+5. **`.github/workflows/knooppunten.yml`:** `LIVE_URL` naar je eigen domein, en de secrets `CLOUDFLARE_API_TOKEN` en `CLOUDFLARE_ACCOUNT_ID` in je eigen repo. Die workflow bouwt het knooppuntbestand en rolt uit.
+6. **Webapp:** de privacyverklaring (`worker/public/privacy*.html`) gaat over de officiële dienst. Pas die aan je eigen installatie aan.
 
 ## Licentie
 
