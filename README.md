@@ -41,7 +41,7 @@ Documentatie:
 
 ### Webapp en Worker
 
-Vereist: Node.js 22.13 of nieuwer (de tests gebruiken `node:sqlite`).
+Vereist: Node.js 22.23 of nieuwer (de tests gebruiken `node:sqlite`; oudere versies van Node 22 hebben daarin fouten).
 
 ```sh
 cd worker

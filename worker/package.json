@@ -3,8 +3,11 @@
   "private": true,
   "license": "GPL-3.0-or-later",
   "type": "module",
+  "engines": {
+    "node": ">=22.23"
+  },
   "scripts": {
-    "test": "node --test test/ test/web/",
+    "test": "node --test 'test/*.test.js' 'test/web/*.test.js'",
     "deploy": "wrangler deploy",
     "watch-route": "node scripts/watch-route.js"
   },
