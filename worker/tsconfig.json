@@ -1,0 +1,16 @@
+{
+  // Typecontrole van de JSDoc in de webapp (npm run typecheck). Er wordt niets gebouwd:
+  // alleen bestanden met // @ts-check worden gecontroleerd.
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "strict": true,
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "skipLibCheck": true
+  },
+  "include": ["public/**/*.js"]
+}

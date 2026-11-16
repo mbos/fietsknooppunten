@@ -91,7 +91,9 @@ function readGpx(text) {
     throw new GpxError(t("gpx.invalid", /** @type {Error} */ (error).message));
   }
   if (root !== "gpx") throw new GpxError(t("gpx.invalid", t("gpx.noRoot")));
-  return { name: trackName ?? documentName, waypoints, trackPoints };
+  // De namen worden in de callbacks hierboven gezet; zonder cast denkt TypeScript dat ze null blijven.
+  const name = /** @type {string | null} */ (trackName ?? documentName);
+  return { name, waypoints, trackPoints };
 }
 
 /** @param {Record<string, string>} attributes */

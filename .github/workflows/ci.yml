@@ -1,0 +1,51 @@
+# Tests bij elke push en pull request. Alleen leesrechten en geen secrets: een pull request
+# van een fork kan hier niets uitrollen. Uitrollen staat in knooppunten.yml.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  worker:
+    name: Webapp en Worker
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - run: npm ci
+      - name: Tests
+        run: npm test
+      - name: Typecontrole (JSDoc)
+        run: npm run typecheck
+
+  tools:
+    name: Bouwtool knooppuntbestand
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Tests
+        run: python3 -I -m unittest discover -s tools/knooppunten
+      - name: shellcheck
+        run: shellcheck tools/knooppunten/build.sh

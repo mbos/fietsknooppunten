@@ -9,10 +9,12 @@
   "scripts": {
     "test": "node --test 'test/*.test.js' 'test/web/*.test.js'",
     "deploy": "wrangler deploy",
-    "watch-route": "node scripts/watch-route.js"
+    "watch-route": "node scripts/watch-route.js",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "jsdom": "^25.0.1",
+    "typescript": "7.0.2",
     "wrangler": "^4.0.0"
   }
 }

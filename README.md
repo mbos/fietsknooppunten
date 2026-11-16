@@ -47,10 +47,13 @@ Vereist: Node.js 22.23 of nieuwer (de tests gebruiken `node:sqlite`; oudere vers
 cd worker
 npm install
 npm test            # unit tests, een nep-D1 en een paginatest in jsdom
+npm run typecheck   # JSDoc-typen controleren (bestanden met // @ts-check)
 npx wrangler dev    # lokaal draaien
 ```
 
 De webapp heeft het knooppuntbestand nodig in `worker/public/data/knooppunten.json`. Dat staat niet in git; bouw het met de tool hieronder.
+
+Bij elke push en pull request draaien de tests, de typecontrole, de tests van de bouwtool en `shellcheck` in GitHub Actions (`.github/workflows/ci.yml`). Dependabot stelt wekelijks updates voor van de dev-dependencies en de actions. De horloge-app test je lokaal; daarvoor zijn de Connect IQ SDK en de simulator nodig.
 
 ### Knooppuntbestand
 

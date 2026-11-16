@@ -15,8 +15,12 @@ export const SEARCH_RADIUS = 40_000;
 /** Een verbinding a–b telt als haar punt binnen (afstand a–b + dit) van a en van b ligt. */
 export const CONNECTION_SLACK = 1_000;
 
-/** @param {number[]} entry [.., lat, lon] in 1e-5 graad, vanaf index `at` */
-const coordinateAt = (entry, at) => ({ lat: entry[at] / SCALE, lon: entry[at + 1] / SCALE });
+/**
+ * @param {readonly (string | number)[]} entry [.., lat, lon] in 1e-5 graad, vanaf index `at`
+ * (bij plaatsen staat op index 0 de naam)
+ * @param {number} at
+ */
+const coordinateAt = (entry, at) => ({ lat: Number(entry[at]) / SCALE, lon: Number(entry[at + 1]) / SCALE });
 
 /**
  * Knooppunten met deze nummers binnen `radius` meter van `anchor`.
